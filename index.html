@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="output.css">
+    <title>TakeawayNest</title>
+    <style>
+      /* This keeps cart icons black in dark mode but allows hover effects to work */
+      .dark-mode-cart-icon {
+          color: #000000 !important;
+      }
+
+      /* This ensures the hover effect still works */
+      .dark button:hover .dark-mode-cart-icon {
+          color: #ffffff !important;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            bebas: ['"Bebas Neue"', 'sans-serif'],
+            inter: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              light: '#FACC15', // Yellow-400
+              dark: '#111827',  // Gray-900
+            },
+            secondary: {
+              light: '#F9FAFB', // Gray-50
+              dark: '#1F2937',  // Gray-800
+            },
+            text: {
+              light: '#191919', // Near black
+              dark: '#F9FAFB',  // Near white
+            },
+          },
+        },
+      },
+    };
+  </script> 
+</head>
+<body class="cursor-pointer bg-secondary-light dark:bg-secondary-dark transition-colors duration-300">
+    <nav class="bg-primary-light dark:bg-primary-dark transition-colors duration-300">
+  <div class='w-full py-0.5 border-b dark:border-gray-700'>
+    <div class='flex justify-between px-20 items-center font-semibold'>
+      <div>
+        <img src="./images/logo.png" alt="logo" class="rounded-full w-32 h-32  object-cover border-0 bg-transparent">
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class='flex xl:gap-10 md:gap-8 font-bebas font-4xl gap-2'>
+        <a href="#about" class="text-3xl text-text-light dark:text-text-dark relative group transition-colors duration-300">
+          About Us
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#Menu1" class="text-3xl text-text-light dark:text-text-dark relative group transition-colors duration-300">
+          Menu
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#Contact" class="text-3xl text-text-light dark:text-text-dark relative group transition-colors duration-300">
+          Contact Us
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </div>
+      
+      <!-- Buttons -->
+      <div class="flex space-x-4">
+        <button onclick="window.location.href='/login'" class=' py-2 px-3 bg-black dark:bg-white text-white dark:text-black rounded-3xl font-semibold transition-all duration-300 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white hover:border hover:border-black dark:hover:border-white'>
+          <i class="fa-solid fa-circle-user transition-all duration-300"></i>
+        </button>
+        <button class='py-2 px-3 bg-black dark:bg-white text-white dark:text-black rounded-3xl font-semibold transition-all duration-300 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white hover:border hover:border-black dark:hover:border-white group'>
+          <i class="fa-solid fa-cart-shopping cart-icon transition-all duration-300"></i>
+        </button>
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class='py-2 px-3 bg-black dark:bg-white text-white dark:text-black rounded-3xl font-semibold transition-all duration-300 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white hover:border hover:border-black dark:hover:border-white'>
+          <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden transition-all duration-300"></i>
+          <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-yellow-400 transition-all duration-300"></i>
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+</nav>
+    <!-- source: https://github.com/mfg888/Responsive-Tailwind-CSS-Grid/blob/main/index.html -->
+      <button id="back-to-top" class="fixed bottom-8 right-8 p-3 bg-yellow-400 dark:bg-blue-500 text-blue-600 dark:text-yellow-500 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 transform translate-y-4 hover:scale-110 z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+  
+    <main class="bg- dark:bg-gray-900 transition-colors duration-300 pb-56">
+<div class="flex flex-col items-center justify-center p-4 text-center">
+  <h1 class="font-bold font-bebas text-8xl mt-10 mb-0 text-text-light dark:text-text-dark transition-colors duration-300">WELCOME TO</h1>
+  
+</div>
+<img id="about" src="images/logo.png" alt="SwiftBytes Logo" class="max-w-full h-64 mb-10 mx-auto mt-10">
+<div id="intropara" class="flex mt-0 mx-auto justify-center items-center text-center w-11/12">
+  <p id="typewriter"class="max-w-6xl font-inter font-bold text-2xl px-1 text-text-light dark:text-text-dark transition-colors duration-300">
+    With SwiftBytes, enjoy hassle-free dining on campus! Pre-order your favorite meals, customize them just the way you like, and pick them up at your convenience no more waiting in long queues. For canteen staff, our platform simplifies order management, reduces workload, and keeps service smooth. Eat smart. Serve smarter.
+
+    Whether you're in a rush between classes or just want a smoother mealtime experience, SwiftBytes has you covered. Stay updated with real-time order tracking, receive instant notifications, and manage your dietary preferences with ease. Designed for students, loved by staff SwiftBytes is the future of campus dining.
+  </p> 
+</div>
+<div class="h-80"></div>
+<div class="h-80"></div>
+<div id="Menu1" class="mx-auto flex justify-center text-8xl bold font-bebas mt-10 text-text-light dark:text-text-dark transition-colors duration-300">MENU</div>
+<!-- ✅ Grid Section - Starts Here 👇 -->
+<section id="Projects"
+    class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+  
+    <!--   ✅ Product card 1 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Shawarma.webp" alt="Chicken Shawarma" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Shawarma</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹120</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹150</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 1 - Ends Here  -->
+
+    <!--   ✅ Product card 2 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Sandwich.jpg" alt="Chicken Sandwich" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Sandwich</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹149</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹199</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 2- Ends Here  -->
+
+    <!--   ✅ Product card 3 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken puff.jpg" alt="Chicken Puff" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Puff</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹70</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹80</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 3 - Ends Here  -->
+
+    <!--   ✅ Product card 4 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Patty Burger.jpg" alt="Chicken Patty Burger" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Patty Burger</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹100</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹150</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 4 - Ends Here  -->
+
+    <!--   ✅ Product card 5 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Veg Burger.webp" alt="Veg Burger" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Veg Burger</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹100</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹150</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 5 - Ends Here  -->
+
+    <!--   ✅ Product card 6 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/chicken 65 Roll.jpg" alt="Chicken 65 Roll" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken 65 Roll</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹150</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹180</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</section>
+<!-- ✅ Grid Section - Starts Here 👇 -->
+<section id="Projects"
+    class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+
+    <!--   ✅ Product card 7 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Biriyani.jpg" alt="Chicken Biryani" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Biryani</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹149</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹199</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 7 - Ends Here  -->
+
+    <!--   ✅ Product card 8 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Fried Rice.jpg" alt="Chicken Fried Rice" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Fried Rice</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹149</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹199</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 8 - Ends Here  -->
+
+    <!--   ✅ Product card 9 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Schezwan Fried Rice.png" alt="Chicken Schezwan Fried Rice" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Schezwan Fried Rice</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹149</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹199</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 9 - Ends Here  -->
+
+    <!--   ✅ Product card 10 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Noodles.jpg" alt="Chicken Noodles" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Noodles</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹149</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹199</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 10 - Ends Here  -->
+
+    <!--   ✅ Product card 11 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chicken Schezwan Noodles.png" alt="Chicken Schezwan Noodles" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chicken Schezwan Noodles</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹149</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹199</p>
+            </del>
+           <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!--   🛑 Product card 11 - Ends Here  -->
+
+    <!--   ✅ Product card 12 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/White Sauce Pasta.jpg" alt="White Sauce Pasta" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">White Sauce Pasta</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹149</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹199</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 12 - Ends Here  -->
+
+    <!--   ✅ Product card 13 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Choco Lava Cake.webp" alt="Choco Lava Cake" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Choco Lava Cake</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹50</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹60</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 13 - Ends Here  -->
+
+    <!--   ✅ Product card 14 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Chocolate Donut.jpg" alt="Chocolate Donut" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Chocolate Donut</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹50</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹60</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 14 - Ends Here  -->
+
+
+     <!--   ✅ Product card 15 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Campa.jpg" alt="Campa" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Campa</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹10</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹20</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 15 - Ends Here  -->
+
+
+     <!--   ✅ Product card 16 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Maaza.jpg" alt="Maaza" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Maaza</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹10</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹20</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 16 - Ends Here  -->
+
+     <!--   ✅ Product card 17 - Starts Here 👇 -->
+    <div class="w-72 bg-white dark:bg-gray-800 shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl product-card transition-colors duration-300">
+      <div>
+        <img src="images/Water Bottle.jpg" alt="Water Bottle" class="h-80 w-72 object-cover rounded-t-xl">
+        <div class="px-4 py-3 w-72">
+          <h3 class="text-lg font-bold text-text-light dark:text-text-dark truncate capitalize transition-colors duration-300">Bisleri Water Bottle</h3>
+          <div class="flex items-center">
+            <p class="text-lg font-semibold text-text-light dark:text-text-dark cursor-auto my-3 price transition-colors duration-300">₹10</p>
+            <del>
+              <p class="text-sm text-gray-600 dark:text-gray-400 cursor-auto ml-2 transition-colors duration-300">₹20</p>
+            </del>
+            <div class="ml-auto cursor-pointer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#e29400" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   🛑 Product card 17 - Ends Here  -->
+
+    <!--   ✅ Add To Cart - Starts Here 👇 -->
+<section class="w-full h-[700px] relative bg-white dark:bg-gray-900 hidden transition-colors duration-300">
+  <div class="bg-white dark:bg-gray-800 flex flex-col h-full absolute right-0 p-10 w-[450px] transition-colors duration-300">
+    <div class="flex items-center mb-3 justify-between">
+      <h2 class="text-text-light dark:text-text-dark text-xl font-medium leading-[30px] transition-colors duration-300">Shopping Card (2)</h2>
+      <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22.5" cy="22.5" r="22.5" fill="white" class="dark:fill-gray-700 transition-colors duration-300"></circle>
+        <path d="M28.75 16.25L16.25 28.75" stroke="#1A1A1A" class="dark:stroke-white transition-colors duration-300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M16.25 16.25L28.75 28.75" stroke="#1A1A1A" class="dark:stroke-white transition-colors duration-300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    <div class="mt-auto">
+      <div class=" py-6 bg-white flex justify-between items-center">
+        <span class="relative justify-start text-[#191919] text-base font-normal  leading-normal">2 Product</span><span class="relative justify-start text-[#191919] text-base font-semibold  leading-tight">$26.00</span>
+      </div>
+      <button class="w-full px-10 py-4 bg-[#00b206] rounded-[43px]     text-white text-base font-semibold  leading-tight">Checkout</button><button class="w-[376px] mt-3 px-10 py-4 bg-[#56ac59]/10 rounded-[43px]   text-[#00b206] text-base font-semibold  leading-tight">Go To Cart</button>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer id="Contact" class="mt-20 xl:mt-32 mx-auto w-full relative text-center bg-gray-800 text-white transition-colors duration-300">
+    <div class="px-6 py-8 md:py-14 xl:pt-20 xl:pb-12">
+        <h2 class="font-bold text-3xl xl:text-4xl leading-snug">
+            Ready to skip the queue?<br>Place your order now!
+        </h2>
+        <a href="#Menu1" class="mt-8 xl:mt-12 px-12 py-5 text-lg font-medium leading-tight inline-block bg-yellow-500 dark:bg-yellow-600 rounded-full shadow-xl border border-transparent hover:bg-yellow-400 dark:hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-sky-999 focus:ring-sky-500 transition-colors duration-300"
+            >Get
+            started</a>
+        <div class="mt-14 xl:mt-20">
+            <nav class="flex flex-wrap justify-center text-lg font-medium">
+                <div class="px-5 py-2 hover:text-yellow-500"><i class="fab fa-linkedin"></i></div>
+                <div class="px-5 py-2 hover:text-yellow-500"><i class="fas fa-envelope"></i></div>
+                <div class="px-5 py-2 hover:text-yellow-500"><i class="fab fa-twitter"></i></div>
+                <div class="px-5 py-2 hover:text-yellow-500"><i class="fab fa-instagram"></i></div>
+                <div class="px-5 py-2 hover:text-yellow-500"><i class="fab fa-github"></i></div>
+            </nav>
+            <p class="mt-7 text-base text-stone-400 dark:text-stone-500 transition-colors duration-300">© 2025 Phoenix Coders,MJCET</p>
+        </div>
+    </div>
+</footer>
+<script src="index.js"></script>
+<script src="scroll.js"></script>
+
+  <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                backToTopButton.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                backToTopButton.classList.add('opacity-0', 'invisible', 'translate-y-4');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+ 
+
+</body>
+</html>
